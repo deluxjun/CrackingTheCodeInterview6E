@@ -19,6 +19,13 @@ This can be solved like a binary search tree.
 ## 8.4
 Subset
 
+Just think about {1,2} set.
+All subset we can make is {} {1} {2} {12}, we call that as P(2)
+Now, let's make subset list of {1,2,3}
+1. Adding '3' element on all each subset of P(2), the result is {3} {13} {23} {123}
+2. Add number 1's list to P(2), that is {} {1} {2} {12} {3} {13} {23} {123}
+3. As a result, P(n) = P(n-1) + {add n in each P(n-1)}
+
 1
 P(1) = {} {1}
 
@@ -29,6 +36,7 @@ P(2) = {} {1} {2} {12}
 P(3) = {} {1} {2} {12} {3} {13} {23} {123}
 
 P(n) = P(n-1) + {add n in each P(n-1)}
+
 ```
 ArrayList list p(int[] n) {
   if (n.length < 1)
