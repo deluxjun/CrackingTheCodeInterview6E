@@ -76,3 +76,24 @@ multi(small, big) {
   return value << 1
 }
 ```
+
+## 8.6
+
+s : Source
+b : Buffer
+t : Target
+
+move(1, s, b, t) : t.push(s.pop())
+move(2, s, b, t) : move(1, s, t, b) | t.push(2) | move(1, b, s, t)
+move(3, s, b, t) : move(2, s, t, b) | t.push(3) | move(2, b, s, t)
+
+```
+move(int n, s, b, t) {
+  if (n == 1) {
+    t.push(s.pop())
+  }
+  move(n-1, s, t, b)
+  t.push(n)
+  move(n-1, b, s, t)
+}
+```
